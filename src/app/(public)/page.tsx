@@ -16,8 +16,8 @@ import {
   Twitter,
   Linkedin,
 } from "lucide-react"
-import { CompanyCarousel } from "./_components/CompanyCarousel"
-import Footer from "./_components/Footer"
+import { CompanyCarousel } from "../_components/CompanyCarousel"
+import Footer from "../_components/Footer"
 import NavBar from "@/app/_components/navbar"
 
 export default function LandingPage() {
@@ -286,7 +286,7 @@ export default function LandingPage() {
                   Success stories from our users
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  See how GreetCode has helped developers land their dream jobs.
+                  See how GitCracked has helped developers land their dream jobs.
                 </p>
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function LandingPage() {
               {[
                 {
                   quote:
-                    "I always struggled with explaining my thought process during interviews. After practicing with GreetCode for a month, I aced my Google interview!",
+                    "I always struggled with explaining my thought process during interviews. After practicing with GitCracked for a month, I aced my Google interview!",
                   author: "Alex Chen",
                   role: "Software Engineer at Google",
                 },

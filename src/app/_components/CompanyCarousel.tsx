@@ -37,7 +37,7 @@ export function CompanyCarousel() {
 
   return (
     <Carousel
-      plugins={[Autoplay({delay: 2500})]}
+      plugins={[Autoplay({delay: 2000, stopOnInteraction: false})]}
     >
       <CarouselContent>
         {/* First set of logos */}
@@ -68,6 +68,7 @@ export function CompanyCarousel() {
               width={120}
               height={40}
               className="h-10 w-auto object-contain"
+              priority
             />
           </div>
         ))}

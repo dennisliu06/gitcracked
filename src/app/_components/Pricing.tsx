@@ -14,6 +14,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Pricing() {
+  const user = false;
+
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 md:px-6">
       <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -100,16 +102,21 @@ export default function Pricing() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Link href={plan.link} className="w-full">
-                <Button
-                  className={`w-full ${
-                    i === 1 ? "bg-purple-600 hover:bg-purple-700" : ""
-                  }`}
-                  variant={i === 1 ? "default" : "outline"}
-                >
-                  {i === 0 ? "Sign Up Free" : "Get Started"}
-                </Button>
-              </Link>
+              {user ? (
+                <></>
+              ) : (
+                <Link href="/signup" className="w-full">
+                  <Button
+                    className={`w-full cursor-pointer ${
+                      i === 1 ? "bg-purple-600 hover:bg-purple-700" : ""
+                    }`}
+                    variant={i === 1 ? "default" : "outline"}
+                  >
+                    {i === 0 ? "Sign Up Free" : "Sign in to upgrade"}
+                  </Button>
+                </Link>
+              )}
+              
             </CardFooter>
           </Card>
         ))}

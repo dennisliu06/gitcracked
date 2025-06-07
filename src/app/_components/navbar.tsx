@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
   return (
@@ -8,12 +9,11 @@ export default function NavBar() {
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-6 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-purple-500 to-pink-600">
-              <div className="absolute inset-0 flex items-center justify-center text-white font-bold">
-                G
-              </div>
+            {/* <Image src="/logo.png" width={90} height={90} alt=""/> */}
+            <div className="h-8 w-8 rounded-md bg-purple-600 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">GC</span>
             </div>
-            <span className="text-xl font-bold">GreetCode</span>
+            <span className="text-xl font-bold">GitCracked</span>
           </Link>
         </div>
 
