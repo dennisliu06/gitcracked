@@ -56,7 +56,7 @@ export default function Pricing() {
               "Progress tracking",
               "Mock interview simulations",
             ],
-            link: "/signup/pro",
+            link: "/signup",
           },
           {
             name: "Team",
@@ -70,7 +70,7 @@ export default function Pricing() {
               "Interview readiness reports",
               "Priority support",
             ],
-            link: "/signup/team",
+            link: "/signup",
           },
         ].map((plan, i) => (
           <Card

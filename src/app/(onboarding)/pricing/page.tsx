@@ -1,5 +1,5 @@
-import NavBar from "@/app/_components/navbar";
-import Pricing from "../../_components/Pricing";
+import NavBar from "@/components/navbar";
+import Pricing from "../../../components/Pricing";
 
 export default function PricingPage() {
   return (
