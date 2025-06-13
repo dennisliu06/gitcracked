@@ -1,13 +1,18 @@
 'use client';
 import { useAuth } from '@/lib/auth/authContext';
+import Dashboard from './Dashboard';
 
 export default function AppPage() {
   const { user, logout } = useAuth();
 
-  if (!user) return <div>Redirecting...</div>; // You can improve this with useRouter later
+  if (!user) {
+    console.log(user)
+    return <div>Redirecting...</div>;
+  } // You can improve this with useRouter later
 
   return (
     <div className="p-6">
+      <Dashboard />
       <h1 className="text-2xl mb-4">Welcome, {user.email}</h1>
       <button
         onClick={logout}

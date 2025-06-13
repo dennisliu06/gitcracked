@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 import { CompanyCarousel } from "../../../components/CompanyCarousel"
 import Footer from "../../../components/Footer"
-import NavBar from "@/components/navbar"
+import NavBar from "@/app/(public)/(landing)/navbar"
 import Pricing from "../../../components/Pricing"
 
 export default function LandingPage() {
