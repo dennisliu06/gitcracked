@@ -1,5 +1,5 @@
 import Pricing from "../../../components/Pricing";
-import NavBarPublic from "@/app/(public)/(landing)/navbar";
+import NavBarPublic from "@/app/(public)/(landing)/NavBarPublic";
 
 export default function PricingPage() {
   return (

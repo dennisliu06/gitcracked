@@ -1,5 +1,5 @@
 import Footer from "../../../components/Footer";
-import NavBarPublic from "./navbar";
+import NavBarPublic from "./NavBarPublic";
 
 export default function Layout({ children }: Readonly<{children: React.ReactNode;}>) {
   return (

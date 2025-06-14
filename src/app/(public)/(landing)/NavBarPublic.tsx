@@ -9,10 +9,13 @@ export default function NavBarPublic() {
       <div className="w-full max-w-screen-xl mx-auto px-4 md:px-6 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            {/* <Image src="/logo.png" width={90} height={90} alt=""/> */}
-            <div className="h-8 w-8 rounded-md bg-purple-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">GC</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="GitCracked Logo"
+              width={32}
+              height={32}
+              className="rounded-md"
+            />
             <span className="text-xl font-bold">GitCracked</span>
           </Link>
         </div>

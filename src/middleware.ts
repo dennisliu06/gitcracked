@@ -14,5 +14,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'], // protect all /app routes
+  matcher: ['/problems/:path*'], // protect all /app routes
 };

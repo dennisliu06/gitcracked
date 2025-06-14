@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Problem } from "@/app/(app)/dashboard/Dashboard";
+import { Problem } from "@/app/(app)/problems/Problems";
 import { CheckCircle2, Clock, XCircle, Star } from "lucide-react";
 
 interface ProblemTableProps {

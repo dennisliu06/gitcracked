@@ -168,7 +168,7 @@ const mockProblems: Problem[] = [
   }
 ];
 
-export default function Dashboard() {
+export default function Problems() {
   const [problems, setProblems] = useState<Problem[]>(mockProblems);
   const [filteredProblems, setFilteredProblems] = useState<Problem[]>(mockProblems);
   const [searchTerm, setSearchTerm] = useState("");

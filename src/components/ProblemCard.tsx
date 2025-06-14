@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Problem } from "@/app/(app)/dashboard/Dashboard";
+import { Problem } from "@/app/(app)/problems/Problems";
 import { CheckCircle2, Clock, XCircle, Play, Building2 } from "lucide-react";
 
 interface ProblemCardProps {

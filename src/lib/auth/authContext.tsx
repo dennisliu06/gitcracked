@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 
 
@@ -21,15 +21,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   const login = (email: string, password: string) => {
-    document.cookie = 'auth=1; path=/'
+    document.cookie = `auth=1; path=/`;
     setUser({email})
-    router.push('/dashboard')
+    router.push('/problems')
   }
 
   const signup = (email: string, password: string) => {
-    document.cookie = 'auth=1; path=/';
+    document.cookie = `auth=1; path=/`
     setUser({email})
-    router.push('/dashboard')
+    router.push('/problems')
   }
 
   const logout = () => {

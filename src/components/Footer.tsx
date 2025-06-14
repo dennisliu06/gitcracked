@@ -1,5 +1,6 @@
 import { Github, Twitter, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -8,9 +9,13 @@ const Footer = () => {
         <div className="grid gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-md bg-purple-600 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">GC</span>
-              </div>
+            <Image
+              src="/logo.png"
+              alt="GitCracked Logo"
+              width={32}
+              height={32}
+              className="rounded-md"
+            />
               <span className="text-xl font-bold">GitCracked</span>
             </div>
             <p className="text-sm text-muted-foreground">
