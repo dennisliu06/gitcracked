@@ -19,10 +19,7 @@ import { useAuth } from "@/lib/auth/authContext";
 const Index = () => {
   const [code, setCode] = useState(`class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(nums):
-            for j in range(i+1):
-                if(nums[i] + nums[j] == target):
-                    return [i, j]`);
+      `);
   const [languageId, setLanguageId] = useState(102)
 
   const [activeTab, setActiveTab] = useState("testcase");
