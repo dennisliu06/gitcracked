@@ -20,13 +20,9 @@ const Index = () => {
   const [code, setCode] = useState(`class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
       `);
-  const [languageId, setLanguageId] = useState(102)
-
+  const [languageId, setLanguageId] = useState(102);
   const [activeTab, setActiveTab] = useState("testcase");
   const { user } = useAuth()
-
-  console.log(code)
-  console.log(languageId)
 
   return (
     <div className="h-[calc(100vh-4rem)] bg-gray-50 overflow-hidden">
@@ -60,7 +56,7 @@ const Index = () => {
                   />
                 </ScrollArea>
                 <div className="sticky bottom-0 z-10">
-                  <RunBar user={user?.email}/>
+                  <RunBar code={code} languageId={languageId} user={user?.email}/>
                 </div>
               </div>
             </ResizablePanel>
