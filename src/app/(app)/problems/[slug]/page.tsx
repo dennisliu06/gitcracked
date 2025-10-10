@@ -74,7 +74,7 @@ const Index = () => {
         <ResizablePanel defaultSize={50} minSize={30}>
           <div className="h-full bg-white border-r border-gray-200">
             <ScrollArea className="h-full">
-              <ProblemDescription />
+              <ProblemDescription problem={problem} />
             </ScrollArea>
           </div>
         </ResizablePanel>
