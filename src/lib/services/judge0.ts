@@ -1,9 +1,11 @@
-interface Submission {
+export interface Submission {
   languageId: number;
   sourceCode: string;
   stdin: string;
   expectedOutput: string;
 }
+
+type Language = "python" | "javascript" | "java" | "cpp" | "csharp";
 
 export class Judge0Service {
   private baseUrl: string;
@@ -23,13 +25,13 @@ export class Judge0Service {
     };
   }
 
-  static LANGUAGES = {
-    python: 109,
-    javascript: 102,
-    java: 91,
-    cpp: 105,
-    csharp: 51,
-  };
+  static LANGUAGES: Record<Language, number> = {
+    'python': 109,
+    'javascript': 102,
+    'java': 91,
+    'cpp': 105,
+    'csharp': 51,
+  } as const;
 
   private utf8ToBase64(string: string) {
     return Buffer.from(string).toString("base64");

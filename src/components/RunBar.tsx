@@ -1,6 +1,7 @@
 import { Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { Judge0Service } from "@/lib/services/judge0";
+import { TestRunner } from "@/lib/services/test-runner";
 
 interface RunBarProps {
   user: string | undefined;
@@ -11,13 +12,12 @@ interface RunBarProps {
 export default function RunBar({ user, code, languageId }: RunBarProps) {
   user = "TEMPORARY EMAIL";
 
-  // const judge0 = new Judge0Service()
+  const runner = new TestRunner()
 
-  // const handleRun = async () => {
-  //   const token = await judge0.submitCode(languageId, code, "", "[1, 2, 3]")
-  //   const result = await judge0.waitForResult(token)
-  //   console.log(result)
-  // }
+  const handleRun = async () => {
+    const res = await runner.runTests(code, "javascript", "twoSum", [{input_data: ["[3,4,5,6]", "7"], expected_output: "[0,1]"},{input_data: ["[4,5,6]", "10"], expected_output: "[0,2]" },{input_data: ["[5,5]", "10"], expected_output: "[0,1]" }])
+    console.log(res)
+  }
 
 
   return (
@@ -29,7 +29,7 @@ export default function RunBar({ user, code, languageId }: RunBarProps) {
             <Button
               variant="outline"
               className="flex items-center gap-2"
-              //onClick={handleRun}
+              onClick={handleRun}
             >
               <Play className="w-4 h-4" />
               Run
