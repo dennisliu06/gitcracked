@@ -1,7 +1,8 @@
-import { Play } from "lucide-react";
+import { Loader, LoaderCircle, LoaderCircleIcon, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { Judge0Service } from "@/lib/services/judge0";
 import { TestRunner } from "@/lib/services/test-runner";
+import { useState } from "react";
 
 interface RunBarProps {
   user: string | undefined;
@@ -11,14 +12,19 @@ interface RunBarProps {
 
 export default function RunBar({ user, code, languageId }: RunBarProps) {
   user = "TEMPORARY EMAIL";
-
-  const runner = new TestRunner()
+  const [loading, setLoading] = useState(false);
+  const runner = new TestRunner();
 
   const handleRun = async () => {
-    const res = await runner.runTests(code, "javascript", "twoSum", [{input_data: ["[3,4,5,6]", "7"], expected_output: "[0,1]"},{input_data: ["[4,5,6]", "10"], expected_output: "[0,2]" },{input_data: ["[5,5]", "10"], expected_output: "[0,1]" }])
-    console.log(res)
-  }
-
+    setLoading(true);
+    const res = await runner.runTests(code, "javascript", "twoSum", [
+      { input_data: ["[3,4,5,6]", "7"], expected_output: "[0,1]" },
+      { input_data: ["[4,5,6]", "10"], expected_output: "[0,2]" },
+      { input_data: ["[5,5]", "10"], expected_output: "[0,1]" },
+    ]);
+    setLoading(false);
+    console.log(res);
+  };
 
   return (
     <div className="p-4 border-t border-gray-200 flex justify-between items-center bg-white">
@@ -31,12 +37,15 @@ export default function RunBar({ user, code, languageId }: RunBarProps) {
               className="flex items-center gap-2"
               onClick={handleRun}
             >
-              <Play className="w-4 h-4" />
+              {loading ? (
+                <LoaderCircle className="w-4 h-4 animate-spin" />
+              ) : (
+                //<Play className="w-4 h-4" />
+                <Play className="w-4 h-4" />
+              )}
               Run
             </Button>
-            <Button
-              className="bg-purple-600 hover:bg-purple-700 text-white"
-            >
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
               Submit
             </Button>
           </div>
