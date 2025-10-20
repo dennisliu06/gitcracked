@@ -36,6 +36,7 @@ export default function RunBar({ user, code, languageId }: RunBarProps) {
               variant="outline"
               className="flex items-center gap-2"
               onClick={handleRun}
+              disabled={loading}
             >
               {loading ? (
                 <LoaderCircle className="w-4 h-4 animate-spin" />
