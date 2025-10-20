@@ -37,7 +37,6 @@ export class TestRunner {
       case "csharp":
     }
   }
-
   private generateJavascriptHarness(
     userCode: string,
     testCases: TestCase[],
@@ -45,32 +44,50 @@ export class TestRunner {
   ) {
     const testCaseCode = testCases
       .map((tc, index) => {
-        const input = JSON.stringify(tc.input_data);
+        const inputParts = tc.input_data.map((inp, i) => `const input${i + 1} = ${inp};`).join('\n');
         const expected = JSON.stringify(tc.expected_output);
         return `
         try {
-            const input = ${input};
+            ${inputParts}
             const expected = JSON.parse(${expected});
             const s = new Solution()
-            const result = s.${functionName}(...input);
-            const passed = JSON.stringify(result) === JSON.stringify(expected);
+            const result = s.twoSum(${tc.input_data.map((_, i) => `input${i + 1}`).join(', ')});
+
+            let passed;
+            if (
+              Array.isArray(result) &&
+              Array.isArray(expected) &&
+              result.length === 2 &&
+              expected.length === 2
+            ) {
+              // Check for equality ignoring order
+              passed =
+              (result[0] === expected[0] && result[1] === expected[1]) ||
+              (result[0] === expected[1] && result[1] === expected[0]);
+            } else {
+              // Fallback to deep equality
+              passed = JSON.stringify(result) === JSON.stringify(expected);
+            }
+
             console.log(JSON.stringify({
-                test_case: ${index + 1},
-                passed: passed,
-                input: input,
-                expected: expected,
-                actual: result,
-                error: null
+              test_case: ${index + 1},
+              passed: passed,
+              input: ${JSON.stringify(tc.input_data)},
+              expected: expected,
+              actual: result,
+              error: null
             }));
+
         } catch (error) {
-            console.log(JSON.stringify({
-                test_case: ${index + 1},
-                passed: false,
-                input: ${input},
-                expected: ${expected},
-                actual: null,
-                error: error.message
-            }));
+          console.log(JSON.stringify({
+            test_case: ${index + 1},
+            passed: false,
+            input: ${JSON.stringify(tc.input_data)},
+            expected: ${expected},
+            actual: null,
+            error: error.message
+          }));
+            
         }
     `;
       })
@@ -104,10 +121,13 @@ export class TestRunner {
     const token = await this.judge0.submitCode(languageId, harness);
     const result = await this.judge0.waitForResult(token);
 
+
+
     return this.parseResults(result, testCases);
   }
 
   private parseResults(judgeResult: any, testCases: TestCase[]) {
+    console.log("JUDGE RES ", judgeResult)
     const results = {
       status: this.mapJudgeStatus(judgeResult.status.id),
       overall_passed: false,
@@ -125,8 +145,9 @@ export class TestRunner {
       return results;
     }
 
-    if (judgeResult.status.id === 5) {
+    if (judgeResult.status.id === 5 || (judgeResult.status.id >= 7 && judgeResult.status.id <= 12)) {
       results.error_message = judgeResult.stderr;
+      console.log(results.error_message)
       return results;
     }
 
@@ -143,12 +164,17 @@ export class TestRunner {
 
         }
       });
+      
+      if (passedCount === testCases.length) {
+        results.status = "Accepted"
+      }
 
       results.overall_passed = passedCount === testCases.length;
       results.test_cases_passed = passedCount;
       results.total_test_cases = testCases.length;
     }
 
+    console.log("DEBUG ", results)
     return results;
   }
 
@@ -158,7 +184,14 @@ export class TestRunner {
       4: "Wrong Answer",
       5: "Runtime Error",
       6: "Compilation Error",
-      7: "Time Limit Exceeded",
+      7: "Runtime Error (SIGSEGV)",
+      8: "Runtime Error (SIGXFSZ)",
+      9: "Runtime Error (SIGFPE)",
+      10: "Runtime Error (SIGABRT)",
+      11: "Runtime Error (NZEC)",
+      12: "Runtime Error (Other)",
+      13: "Internal Error",
+      14: "Exec Format Error",
     };
     return statusMap[statusId] || "Unknown";
   }
